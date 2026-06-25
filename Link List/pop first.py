@@ -1,0 +1,72 @@
+class Node:
+    def __init__(self,value):
+        self.value = value
+        self.next = None
+
+class LinkedList:
+    def __init__(self, value):
+        new_node = Node(value)
+        self.head = new_node
+        self.tail = new_node
+        self.length = 1
+
+    def append(self, value):
+        new_node = Node(value)
+
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+
+        self.length += 1
+        return True
+
+    # --------------------------------------------------------#
+
+    def pop_first(self):
+        #rare case
+        if self.length == 0 or self.head is None:
+            return None
+        else:
+            temp = self.head
+            self.head = self.head.next
+            self.length -= 1
+            return temp.value
+
+
+    def printList(self):
+        current = self.head
+
+        while current is not None:
+            print(current.value, end="\t")
+            current = current.next
+
+        print()
+
+
+linked_list = LinkedList(3)
+
+linked_list.append(12)
+linked_list.append(16)
+linked_list.append(20)
+linked_list.append(25)
+linked_list.append(26)
+
+
+linked_list.printList()
+
+print('Head:', linked_list.head.value)
+print('Tail:', linked_list.tail.value)
+print('Length:', linked_list.length)
+
+
+linked_list.pop_first()
+print('After pop first:')
+linked_list.printList()
+
+
+print('Head:', linked_list.head.value)
+print('Tail:', linked_list.tail.value)
+print('Length:', linked_list.length)
