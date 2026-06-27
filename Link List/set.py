@@ -31,31 +31,20 @@ class LinkedList:
 
         print()
 
-    # def get(self, index):
-    #     if index < 0 or index >= self.length:
-    #         return None
-    #     temp = self.head
-    #     for _ in range(index):
-    #         temp = temp.next
-    #     print(temp.value)
-    #     return Truef
-    def set_value(self, index, value):
-        if self.length == 0:
-            new_node = Node(value)
-            self.head = new_node
-            self.tail = new_node
-            self.length += 1
-            return True
-
+    def get(self, index):
         if index < 0 or index >= self.length:
-            return False
-
+            return None
         temp = self.head
         for _ in range(index):
             temp = temp.next
+        return temp
 
-        temp.value = value
-        return True
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp is not None:
+            temp.value = value
+            return True
+        return False
 
 
 linked_list = LinkedList(3)
